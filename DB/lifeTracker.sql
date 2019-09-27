@@ -21,9 +21,8 @@ USE `lifeTrackerdb` ;
 DROP TABLE IF EXISTS `lifeTracker` ;
 
 CREATE TABLE IF NOT EXISTS `lifeTracker` (
-  `idlifeTracker` INT NOT NULL AUTO_INCREMENT,
-  `id` VARCHAR(45) NULL,
-  PRIMARY KEY (`idlifeTracker`))
+  `id` INT NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
 SET SQL_MODE = '';
@@ -43,6 +42,6 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `lifeTrackerdb`;
-INSERT INTO `lifeTracker` (`idlifeTracker`, `id`) VALUES (1, '1');
+INSERT INTO `lifeTracker` (`id`) VALUES (1);
 
 COMMIT;
