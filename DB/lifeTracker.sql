@@ -16,12 +16,21 @@ CREATE SCHEMA IF NOT EXISTS `lifeTrackerdb` DEFAULT CHARACTER SET utf8 ;
 USE `lifeTrackerdb` ;
 
 -- -----------------------------------------------------
--- Table `lifeTracker`
+-- Table `life`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `lifeTracker` ;
+DROP TABLE IF EXISTS `life` ;
 
-CREATE TABLE IF NOT EXISTS `lifeTracker` (
+CREATE TABLE IF NOT EXISTS `life` (
   `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NOT NULL,
+  `UserStory` VARCHAR(45) NULL,
+  `Description` VARCHAR(200) NULL,
+  `URL_list` VARCHAR(45) NULL,
+  `Category` VARCHAR(45) NULL,
+  `Priority` VARCHAR(45) NULL,
+  `Line_number` INT NULL,
+  `SubMenu` VARCHAR(45) NULL,
+  `time_created` DATETIME NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -38,10 +47,11 @@ SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 -- -----------------------------------------------------
--- Data for table `lifeTracker`
+-- Data for table `life`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `lifeTrackerdb`;
-INSERT INTO `lifeTracker` (`id`) VALUES (1);
+INSERT INTO `life` (`id`, `name`, `UserStory`, `Description`, `URL_list`, `Category`, `Priority`, `Line_number`, `SubMenu`, `time_created`) VALUES (1, 'Test', 'TestUserStory', 'TestUserStory', 'google.com', 'Water', NULL, 1234, NULL, NULL);
+INSERT INTO `life` (`id`, `name`, `UserStory`, `Description`, `URL_list`, `Category`, `Priority`, `Line_number`, `SubMenu`, `time_created`) VALUES (2, 'Test  2', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 COMMIT;
