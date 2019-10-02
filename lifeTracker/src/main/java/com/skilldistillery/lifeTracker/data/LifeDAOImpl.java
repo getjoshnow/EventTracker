@@ -26,8 +26,5 @@ public class LifeDAOImpl implements LifeDAO {
 		  return em.createQuery(query, Life.class).getResultList();
 		
 	}
-	
-	
-	
 
 }

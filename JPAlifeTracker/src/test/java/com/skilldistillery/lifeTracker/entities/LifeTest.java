@@ -1,5 +1,6 @@
 package com.skilldistillery.lifeTracker.entities;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import javax.persistence.EntityManager;
@@ -44,12 +45,12 @@ class LifeTest {
 			assertNotNull(life);
 		}
 		
-//		@Test
-//		public void Test_entityoneconnectivitiy(){
-//			life = em.find(Life.class, 1);
-//			assertNotNull(life);
-//			assertEquals("Test", life.getName());
-//		}
+		@Test
+		public void Test_entityoneconnectivitiy(){
+			life = em.find(Life.class, 1);
+			assertNotNull(life);
+			assertEquals("Test", life.getName());
+		}
 		
 		
 	}
