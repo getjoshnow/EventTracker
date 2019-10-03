@@ -13,25 +13,34 @@ public class Life {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	private String Name;
+	private String name;
 	
-	private String UserStory;
+	@Column(name="userstory")	
+	private String userStory;
 	
-	private String Description;
+	
+	@Column(name="description")	
+	private String description;
 	
 	@Column(name="url_list")
 	private String urlList;
 	
-	private String Category;
+	@Column(name="category")
+	private String category;
 	
+	@Column(name="priority")
 	private String priority;
 	
 	@Column(name="line_number")
-	private int line_Number;
+	private Integer lineNumber;
 	
-	private String SubMenu;
+	@Column(name="sub_menu")
+	private String subMenu;
 	
-	
+	@Column(name="time_created")
+	private String timeCreated;
+
+
 	public int getId() {
 		return id;
 	}
@@ -39,31 +48,30 @@ public class Life {
 	public void setId(int id) {
 		this.id = id;
 	}
-	
-	public  String getName() {
-		return Name;
+
+	public String getName() {
+		return name;
 	}
 
 	public void setName(String name) {
-		Name = name;
+		this.name = name;
 	}
 
 	public String getUserStory() {
-		return UserStory;
+		return userStory;
 	}
 
 	public void setUserStory(String userStory) {
-		UserStory = userStory;
+		this.userStory = userStory;
 	}
 
 	public String getDescription() {
-		return Description;
+		return description;
 	}
 
 	public void setDescription(String description) {
-		Description = description;
+		this.description = description;
 	}
-
 
 	public String getUrlList() {
 		return urlList;
@@ -74,11 +82,11 @@ public class Life {
 	}
 
 	public String getCategory() {
-		return Category;
+		return category;
 	}
 
 	public void setCategory(String category) {
-		Category = category;
+		this.category = category;
 	}
 
 	public String getPriority() {
@@ -89,28 +97,128 @@ public class Life {
 		this.priority = priority;
 	}
 
-	public int getLine_Number() {
-		return line_Number;
+	public Integer getLineNumber() {
+		return lineNumber;
 	}
 
-	public void setLine_Number(int line_Number) {
-		this.line_Number = line_Number;
+	public void setLineNumber(Integer lineNumber) {
+		this.lineNumber = lineNumber;
 	}
 
 	public String getSubMenu() {
-		return SubMenu;
+		return subMenu;
 	}
 
 	public void setSubMenu(String subMenu) {
-		SubMenu = subMenu;
+		this.subMenu = subMenu;
+	}
+
+
+
+	public Life(int id, String name, String userStory, String description, String urlList, String category,
+			String priority, int lineNumber, String subMenu, String timeCreated) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.userStory = userStory;
+		this.description = description;
+		this.urlList = urlList;
+		this.category = category;
+		this.priority = priority;
+		this.lineNumber = lineNumber;
+		this.subMenu = subMenu;
+		this.timeCreated = timeCreated;
+	}
+
+	public Life() {
+		super();
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((category == null) ? 0 : category.hashCode());
+		result = prime * result + ((description == null) ? 0 : description.hashCode());
+		result = prime * result + id;
+		result = prime * result + lineNumber;
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((priority == null) ? 0 : priority.hashCode());
+		result = prime * result + ((subMenu == null) ? 0 : subMenu.hashCode());
+		result = prime * result + ((urlList == null) ? 0 : urlList.hashCode());
+		result = prime * result + ((userStory == null) ? 0 : userStory.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Life other = (Life) obj;
+		if (category == null) {
+			if (other.category != null)
+				return false;
+		} else if (!category.equals(other.category))
+			return false;
+		if (description == null) {
+			if (other.description != null)
+				return false;
+		} else if (!description.equals(other.description))
+			return false;
+		if (id != other.id)
+			return false;
+		if (lineNumber != other.lineNumber)
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		if (priority == null) {
+			if (other.priority != null)
+				return false;
+		} else if (!priority.equals(other.priority))
+			return false;
+		if (subMenu == null) {
+			if (other.subMenu != null)
+				return false;
+		} else if (!subMenu.equals(other.subMenu))
+			return false;
+		if (urlList == null) {
+			if (other.urlList != null)
+				return false;
+		} else if (!urlList.equals(other.urlList))
+			return false;
+		if (userStory == null) {
+			if (other.userStory != null)
+				return false;
+		} else if (!userStory.equals(other.userStory))
+			return false;
+		return true;
+	}
+
+	public String getTimeCreated() {
+		return timeCreated;
+	}
+
+	public void setTimeCreated(String timeCreated) {
+		this.timeCreated = timeCreated;
 	}
 
 	@Override
 	public String toString() {
-		return "Life [id=" + id + ", Name=" + Name + ", UserStory=" + UserStory + ", Description=" + Description
-				+ ", urlList=" + urlList + ", Category=" + Category + ", priority=" + priority + ", line_Number="
-				+ line_Number + ", SubMenu=" + SubMenu + "]";
+		return "Life [id=" + id + ", name=" + name + ", userStory=" + userStory + ", description=" + description
+				+ ", urlList=" + urlList + ", category=" + category + ", priority=" + priority + ", lineNumber="
+				+ lineNumber + ", subMenu=" + subMenu + ", timeCreated=" + timeCreated + "]";
 	}
+	
 
-
+	
+	
+	
 }
+	

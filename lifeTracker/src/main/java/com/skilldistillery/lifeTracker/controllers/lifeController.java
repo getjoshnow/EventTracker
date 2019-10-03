@@ -22,27 +22,27 @@ import com.skilldistillery.lifeTracker.entities.Life;
 @RestController
 public class lifeController {
 
-	@GetMapping("ping")
-	public String ping()
-	{ return "pong/n";  				}
 	
 	@Autowired
 	private LifeService svr;
 
-	@GetMapping(path = "life")
+
+	@GetMapping("ping")
+	public String ping()
+	{ return "pong/n";  }
+	
+	@GetMapping(path ="posts")
 	public List<Life> index() {
 		return svr.index();
 	}
 
-	@GetMapping(path = "life/{filmId}")
-	public Life show(@PathVariable Integer filmId, HttpServletResponse resp) {
-		Life life = new Life();
-		return svr.show(filmId);
+	@GetMapping(path ="post/{trackerId}")
+	public Life show(@PathVariable Integer trackerId, HttpServletResponse resp) {
+		return svr.show(trackerId);
 	}
 
-	@PostMapping(path = "life/{film}")
+	@PostMapping(path ="posts/")
 	public Life create(@RequestBody Life life, HttpServletResponse resp, HttpServletRequest req) {
-		System.out.println("TESTing");
 		try {
 			svr.create(life);
 			resp.setStatus(201);
@@ -58,11 +58,11 @@ public class lifeController {
 		return life;
 	}
 
-	@PutMapping(path = "life/{film}")
-	public Life update(@PathVariable("filmId") Integer filmId, @RequestBody Life life, HttpServletResponse resp) {
+	@PutMapping(path ="posts/{trackerId}")
+	public Life update(@PathVariable("trackerId") Integer trackerId, @RequestBody Life life, HttpServletResponse resp) {
 
 		try {
-			svr.update(filmId, life);
+			svr.update(trackerId, life);
 			if (life == null) 
 			{resp.setStatus(404);}
 		} catch (Exception e) {
@@ -74,10 +74,10 @@ public class lifeController {
 		
 	}
 
-	@DeleteMapping(path = "life/{filmId}")
-	public void delete(@PathVariable int filmId, HttpServletRequest req, HttpServletResponse resp) {
+	@DeleteMapping(path ="posts/{trackerId}")
+	public void delete(@PathVariable int trackerId, HttpServletRequest req, HttpServletResponse resp) {
 		try {
-			svr.delete(filmId);
+			svr.delete(trackerId);
 		} catch (Exception e) {
 			e.printStackTrace();
 			resp.setStatus(404);
