@@ -22,7 +22,7 @@ DROP TABLE IF EXISTS `life` ;
 
 CREATE TABLE IF NOT EXISTS `life` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(45) NULL,
+  `name` VARCHAR(45) NOT NULL,
   `userstory` VARCHAR(45) NULL,
   `description` VARCHAR(200) NULL,
   `url_list` VARCHAR(45) NULL,
@@ -51,9 +51,7 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `lifeTrackerdb`;
-INSERT INTO `life` (`id`, `name`, `userstory`, `description`, `url_list`, `category`, `priority`, `line_number`, `sub_menu`, `time_created`) VALUES (1, 'Test', 'TestUserStory', 'TestUserStory', 'google.com', 'Water', NULL, 1234, NULL, 'september');
-INSERT INTO `life` (`id`, `name`, `userstory`, `description`, `url_list`, `category`, `priority`, `line_number`, `sub_menu`, `time_created`) VALUES (2, 'apples', 'bannanas', 'carrot', 'david', 'john', 'fds', 43343, 'fosh', 'March 1st');
-INSERT INTO `life` (`id`, `name`, `userstory`, `description`, `url_list`, `category`, `priority`, `line_number`, `sub_menu`, `time_created`) VALUES (3, 'davidson', 'fish', 'stick', 'rappit', 'fishdfjldf', 'marker', 32143, 'selena', 'feb');
-INSERT INTO `life` (`id`, `name`, `userstory`, `description`, `url_list`, `category`, `priority`, `line_number`, `sub_menu`, `time_created`) VALUES (DEFAULT, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'june');
+INSERT INTO `life` (`id`, `name`, `userstory`, `description`, `url_list`, `category`, `priority`, `line_number`, `sub_menu`, `time_created`) VALUES (1, 'Test', 'TestUserStory', 'TestUserStory', 'google.com', 'Water', NULL, 1234, NULL, NULL);
+INSERT INTO `life` (`id`, `name`, `userstory`, `description`, `url_list`, `category`, `priority`, `line_number`, `sub_menu`, `time_created`) VALUES (2, 'Test  2', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 COMMIT;

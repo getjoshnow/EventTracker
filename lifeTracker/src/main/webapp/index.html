@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Life Tracker</title>
+</head>
+<body>
+
+
+
+
+<h1>Life Event Tracker</h1>
+
+<button id="showAllLife" >Show All Life Events</button>
+<br>
+
+	<form name ="searchLife"> Search By Event
+	<input type="text" name = "findById"></input>
+    <input type="submit" value="submit" name="lookup"></input>
+	</form>
+
+	<form name ="deleteLife"> Delete By Id
+	<input type="text" name = "deleteById"></input>
+    <input type="submit" value="submit" name="lookup"></input>
+	</form>
+
+<button class="updateLife">Update Life Event</button><br>
+<button class="deleteLife">Delete Life Event</button><br>
+<hr>
+<div>
+	<h3>Create  A Life Event</h3>
+	<form name ="addLife">
+	<br><label for="title"> Name of Life Event</label><input type="text" name = "name"></input>
+	<br><label for="title"> Description</label><input type="text" name = "description"></input>
+	<br><label for="title"> User Story</label><input type="text" name = "userStory"></input>
+	<br><label for="title"> Category </label><input type="text" name = "category"></input>
+	<br><label for="title"> Priority</label><input type="text" name = "priority"></input>
+	<br><label for="title"> URL Links</label><input type="text" name = "urlList"></input>
+	<br><label for="title"> Line Number</label><input type="text" name = "lineNumber"></input>
+	<br><label for="title"> Sub Menu</label><input type="text" name = "subMenu"></input>
+	<br><label for="title"> Time Created</label><input type="text" name = "timeCreated"></input>
+	<br><label for="submit"></label><input type="submit" name = "submit" value="submit"></input>
+	</form>
+
+	<div id="dataData"></div>
+</div>
+<script src="js/script.js"></script>
+</body>
+</html>

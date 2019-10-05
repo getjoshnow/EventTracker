@@ -22,15 +22,13 @@ import com.skilldistillery.lifeTracker.entities.Life;
 @RestController
 public class lifeController {
 
-	
 	@Autowired
 	private LifeService svr;
-
 
 	@GetMapping("ping")
 	public String ping()
 	{ return "pong/n";  }
-	
+		
 	@GetMapping(path ="posts")
 	public List<Life> index() {
 		return svr.index();
