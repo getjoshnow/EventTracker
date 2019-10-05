@@ -1,8 +1,8 @@
 ### Welcome
-Hello, welcome to my Life tracker App.  This app is designed to tracker the everyday errands and task that need to get done.  There are many TODO apps out there that never seem to have depth and complexity.  Life tracker is that solution where you can input individual tasks and sort based off of priority and category.
+Hello, welcome to my Life Event Tracker Application.  This app is designed to track the everyday errands and task of life that we so often to forget to do.  Budget our accounts, get Oil Change, Call Grandmother later this evening.   There are many TODO apps out there, which each one have pros and cons.  What sets Life Event Tracker app apart is the idea that you can dump and off load every task from washing dishes to applying for a new job onto the app and allow it to sort your task based upon how much free time you have.  there are many TODO task out there, but very few reflect the complexities of life, and have the depth and complexity to adapt around you.  If you want an easy task, and a hard task,  you can sort and choose how you want to accomplish things this day.  Life tracker is that solution where you can input individual tasks and sort based off of priority, category, free time, and complexity.  Welcome to your Life Tracker that schedules your task for you.
 
 ### Overview
-This program is designed to gather the users individual tasks (Life Event).    
+This program is designed to gather the users individual tasks (Life Event).   Initially, there is a load period where an individual can off load his task and overview all individual task.  After that phase, the use can then interact with the application so they are easily able to sort and accomplish their task.   
 The application prompts the user to enter forum data to be stored in the data base.  This information can then be retrieved using lifeEvent IDs.   There is an option to select all events and display them in a table.
 Thank you for using this application.
 
