@@ -1,21 +1,22 @@
 window.addEventListener('load', function(e) {
 	console.log('document loaded');
 	init();
+	initAdd();
 	initDelete();
 });
 
 var testEvent = {
 
 	"id" : 50,
-	"name" : "Test50",
-	"userStory" : "TestUserStory50",
-	"description" : "TestUserStory50",
-	"urlList" : "google.com",
-	"category" : "Water",
-	"priority" : 50,
-	"lineNumber" : 1234,
-	"subMenu" : 50,
-	"timeCreated" : 55
+	"name" : "51",
+	"userStory" : "52",
+	"description" : "53",
+	"urlList" : "54",
+	"category" : "55",
+	"priority" : "556",
+	"lineNumber" : "57",
+	"subMenu" : "58",
+	"timeCreated" : "59"
 }
 
 function init() {
@@ -41,6 +42,8 @@ function initDelete() {
 		if (confirm("Delete: Are You Sure?")) {
 			if (!isNaN(id) && id > 0) {
 				deleteLifeEvent(id);
+				div.textContent = '';
+
 			} else {
 				alert("Number must be positive")
 			}
@@ -55,6 +58,7 @@ function initAdd() {
 		console.log("HELLO IVE BEEN CLICKED");
 		if (confirm("Submit: Are You Sure?")) {
 			addLifeEvent();
+			alert("To update, Search By Event ID");
 		}
 	});
 }
@@ -65,17 +69,16 @@ function initUpdate(data) {
 	var uf = document.createElement('form'); // uf = update form
 	var div = document.getElementById('formUpdate');
 	div.textContent = '';
-	div.appendChild(uf); // creaets formUpdate
+	div.appendChild(uf); // creates formUpdate
 
 	uf.id = data.id;
 	uf.name = "updateLife";
 	console.log(uf);
 	console.log(div);
 	console.log(data.id);
+	uf.appendChild(document.createElement('br'));
 	for (key in data) {
-		if (key == "id") { // skipping database id
-			console.log("Found id")
-		} else {
+
 			let name = document.createElement('input');
 			name.value = data[key];
 			name.type = "text";
@@ -84,8 +87,10 @@ function initUpdate(data) {
 			span.textContent = key;
 			uf.appendChild(span);
 			uf.appendChild(name);
+			uf.appendChild(document.createElement('br'));
+
 		}
-	}
+
 
 	var submit = document.createElement('input');
 	submit.value = "submit";
@@ -95,7 +100,6 @@ function initUpdate(data) {
 
 	submit.addEventListener('click', function(e) {
 		e.preventDefault();
-		console.log("Update sleeper activated CLICKED");
 		if (confirm("Update: Are You Sure?")) {
 			updateLifeEvent();
 
@@ -187,6 +191,7 @@ function deleteLifeEvent(id) {
 }
 
 function addLifeEvent() {
+	console.log("addLifeEvent");
 	let form = document.addLife;
 	let data = {
 		name : form.name.value,
