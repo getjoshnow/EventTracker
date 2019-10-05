@@ -2,6 +2,7 @@ window.addEventListener('load', function(e) {
 	console.log('document loaded');
 	init();
 	initDelete();
+	initAdd();
 });
 
 var testEvent = {
@@ -29,6 +30,7 @@ e.preventDefault();
 var id = document.searchLife.findById.value;
 console.log(id);
 if (!isNaN(id) && id > 0) {
+console.log("CONFRIMED");
 getLifeEvent(id);
 }
 });
@@ -41,8 +43,24 @@ document.deleteLife.lookup.addEventListener('click', function(e) {
 e.preventDefault();
 var id = document.deleteLife.deleteById.value;
 console.log(id);
+if(confirm("Delete: Are You Sure?")){
 if (!isNaN(id) && id > 0) {
 deleteLifeEvent(id);
+}
+else {
+	alert("Number must be positive")
+}
+}
+});
+
+}
+
+function initAdd() {
+document.addLife.submit.addEventListener('click', function(e) {
+e.preventDefault();
+console.log("HELLO IVE BEEN CLICKED");
+if(confirm("Submit: Are You Sure?")){
+addLifeEvent();
 }
 });
 
@@ -119,6 +137,7 @@ function deleteLifeEvent(id) {
 
 			// print out JSON data
 			console.log(data);
+			alert("deleted:" + id);
 			displayLifeEvent(data);
 			// console.log(data[0].id); // 1
 
@@ -132,8 +151,7 @@ function deleteLifeEvent(id) {
 }
 
 
-function addLifeEvent(e) {
-    e.preventDefault();
+function addLifeEvent() {
     let form = document.addLife;
     let data = {
         name : form.name.value,
@@ -146,23 +164,24 @@ function addLifeEvent(e) {
         subMenu : form.subMenu.value,
         timeCreated : form.timeCreated.value
     };
+
     let xhr = new XMLHttpRequest();
-    xhr.open("POST", "/api/films");
+    xhr.open("POST", "/api/posts/");
     xhr.setRequestHeader("Content-type", "application/json");
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4) {
             if (xhr.status === 200 || xhr.status === 201) {
-                let filmJson = xhr.responseText;
-                let film = JSON.parse(filmJson);
-                console.log(film);
-                displayFilm(film);
+                let dataJson = xhr.responseText;
+                let data = JSON.parse(dataJson);
+                console.log(data);
+                displayLifeEvent(data);
             } else {
-                clearCastDiv();
+                //clearCastDiv();
             }
         }
     };
-    let filmJson = JSON.stringify(film)
-    xhr.send(filmJson);
+    let dataJson = JSON.stringify(data);
+    xhr.send(dataJson);
 }
 //functions
 //displayLifeEvent(lifeEvent);

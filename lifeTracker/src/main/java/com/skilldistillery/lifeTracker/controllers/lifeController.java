@@ -39,7 +39,7 @@ public class lifeController {
 		return svr.show(trackerId);
 	}
 
-	@PostMapping(path ="posts/")
+	@PostMapping(path ="posts")
 	public Life create(@RequestBody Life life, HttpServletResponse resp, HttpServletRequest req) {
 		try {
 			svr.create(life);
