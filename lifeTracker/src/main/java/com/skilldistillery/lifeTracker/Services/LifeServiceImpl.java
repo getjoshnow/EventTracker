@@ -25,8 +25,10 @@ public class LifeServiceImpl implements LifeService {
 	@Override
 	public Life show(Integer id) {
 		Optional<Life> lifeOpt = repo.findById(id);
-		Life life = lifeOpt.get();
-		return life;
+		if (lifeOpt.isPresent()) {
+		return lifeOpt.get();
+		}
+		return null;
 	}
 
 		
