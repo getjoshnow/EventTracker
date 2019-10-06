@@ -3,21 +3,9 @@ window.addEventListener('load', function(e) {
 	init();
 	initAdd();
 	initDelete();
+	initShowAll();
 });
 
-var testEvent = {
-
-	"id" : 50,
-	"name" : "51",
-	"userStory" : "52",
-	"description" : "53",
-	"urlList" : "54",
-	"category" : "55",
-	"priority" : "556",
-	"lineNumber" : "57",
-	"subMenu" : "58",
-	"timeCreated" : "59"
-}
 
 function init() {
 	// document.newLife.lookup.ad('click', function(event) {
@@ -32,6 +20,15 @@ function init() {
 	});
 
 }
+
+function initShowAll() {
+		document.getElementById("showAllLife").addEventListener('click', function() {
+		console.log("in SHOW ALL Function");
+		getAllLifeEvents();
+	});
+
+}
+
 
 function initDelete() {
 	// document.newLife.lookup.ad('click', function(event) {
@@ -257,6 +254,74 @@ function updateLifeEvent() {
 	let dataJson = JSON.stringify(data);
 	xhr.send(dataJson);
 }
+
+
+
+
+function getAllLifeEvents() {
+
+	url = "api/posts";
+	var xhr = new XMLHttpRequest();
+	xhr.open('GET', url);
+
+	xhr.onreadystatechange = function() {
+		if (xhr.status < 400 && xhr.readyState === 4) {
+			// convert responseText to JSON
+			console.log(xhr.responseText);
+			if (xhr.responseText != "") {
+				//var data = xhr.responseText;
+				var data2 = JSON.parse(xhr.responseText);
+
+				// print out JSON data
+				console.log(data2);
+				displayAllLifeEvents(data2);
+			} else {
+				alert("error loading all Events");
+			}
+		} else if (xhr.readyState === 4 && xhr.status >= 400) {
+			console.error('ERROR!!!!');
+			data = null;
+		}
+	};
+
+	xhr.send(null);
+
+}
+
+function displayAllLifeEvents(dataArray) {
+	var dataDiv = document.getElementById('showAllLifeDiv');
+	dataDiv.textContent = '';
+	// Table begins
+	header = document.createElement("hr");
+	dataDiv.appendChild(header);
+
+	let tb = document.createElement("table");
+	tb.textContent = "Tester Table";
+	dataDiv.appendChild(tb);
+
+	console.log(dataArray);
+
+	for (var key in dataArray) {
+		console.log("dataArray[key]")
+		var dataSplit = dataArray[key];
+//creates row
+	let tr = document.createElement("tr");
+	dataDiv.appendChild(tr);
+
+	for ( var key in dataSplit) {
+		if (dataSplit.hasOwnProperty(key)) {
+			// console.log(key + " -> " + p[key]);
+			td = document.createElement("td");
+			td.textContent = key + " " + dataSplit[key];
+			dataDiv.appendChild(td);
+		}
+		dataDiv.appendChild(document.createElement("tr"));
+
+	}
+}
+
+}
+
 // functions
 // displayLifeEvent(lifeEvent);
 // deleteLifeEvent(id);

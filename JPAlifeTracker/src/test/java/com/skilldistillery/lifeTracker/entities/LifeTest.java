@@ -41,13 +41,13 @@ class LifeTest {
 		}
 		@Test
 		public void Test_basicconnectivitiy(){
-			life = em.find(Life.class, 1);
+			life = em.find(Life.class, 7);
 			assertNotNull(life);
 		}
 		
 		@Test
 		public void Test_entityoneconnectivitiy(){
-			life = em.find(Life.class, 1);
+			life = em.find(Life.class, 7);
 			assertNotNull(life);
 			assertEquals("Test", life.getName());
 		}

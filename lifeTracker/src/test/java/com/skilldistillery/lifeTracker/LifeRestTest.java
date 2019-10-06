@@ -41,9 +41,9 @@ public class LifeRestTest {
 	@Test
 	public void  TEST_Listlife() {
 		List <Life> lifes = new ArrayList<>();
-		repo.findAll();
+		lifes = repo.findAll();
 		assertNotNull(lifes);
-		assertEquals(2, lifes.size());
+		assertEquals(14, lifes.size());
 	}
 	
 

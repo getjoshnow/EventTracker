@@ -1,0 +1,38 @@
+/* Three image containers (use 25% for four, and 50% for two, etc) */
+.column {
+    float: left;
+    width: 40%;
+    padding: 5px;
+  }
+  
+  /* Clear floats after image containers */
+  .row::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+  
+  
+  span.c {
+    display: block;
+    width: 400px;
+    height: 100px;
+    padding: 5px;
+    border: 1px solid blue;    
+    background-color: yellow; 
+  }
+
+  #box1 {
+    width: 300;
+    height: 100;
+    border: 5px solid blue;
+  }
+  
+   .div2 {
+     width: 300px;
+     height: 100px;
+     padding: 50px;
+     border: 1px solid red;
+   }
+  
+

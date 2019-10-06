@@ -3,28 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <title>Life Tracker</title>
+
 </head>
 <body>
 
 
 
 
-<h1>Life Event Tracker</h1>
+<h1>Life Event Loading Page Tracker</h1>
 
 <button id="showAllLife" >Show All Life Events</button>
-<br>
-
-	<form name ="searchLife"> Search By Event
-	<input type="text" name = "findById"></input>
-    <input type="submit" value="submit" name="lookup"></input>
-	</form>
-
-	<form name ="deleteLife"> Delete By Id
-	<input type="text" name = "deleteById"></input>
-    <input type="submit" value="submit" name="lookup"></input>
-	</form>
-
-<button class="updateLife">Update Life Event</button><br>
+<div id="showAllLifeDiv"></div>
 <hr>
 <div>
 	<h3>Create  A Life Event</h3>
@@ -40,10 +29,21 @@
 	<br><label for="title"> Time Created</label><input type="text" name = "timeCreated"></input>
 	<br><label for="submit"></label><input type="submit" name = "submit" value="submit"></input>
 	</form>
-
+<hr>
 	<div id="dataData"></div>
 	<div id="formUpdate"></div>
+<hr>
 
+<form name ="searchLife"> Search By Event
+		<input type="text" name = "findById"></input>
+		<input type="submit" value="submit" name="lookup"></input>
+		</form>
+	
+		<form name ="deleteLife"> Delete By Id
+		<input type="text" name = "deleteById"></input>
+		<input type="submit" value="submit" name="lookup"></input>
+		</form>
+	
 </div>
 <script src="js/script.js"></script>
 </body>
