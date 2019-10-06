@@ -6,17 +6,38 @@
 
 </head>
 <body>
-
+<link rel="stylesheet" type="text/css" href="js/index.css">
 
 
 
 <h1>Life Event Loading Page Tracker</h1>
 
-<button id="showAllLife" >Show All Life Events</button>
-<div id="showAllLifeDiv"></div>
+
 <hr>
+
+<table><tr>
+		<button id="showAllLife" >Show All Life Events</button>
+		</tr><tr>
+<td>
+<form name ="searchLife"> Search By Event
+		<input type="text" name = "findById"></input>
+		<input type="submit" value="submit" name="lookup"></input>
+		</form>
+	</td><td>
+		<form name ="deleteLife"> Delete By Id
+		<input type="text" name = "deleteById"></input>
+		<input type="submit" value="submit" name="lookup"></input>
+		</form>
+	</td></tr></table>
+
+		<hr>
+		<div id="dataData" style="overflow-x:auto;"></div>
+		<div id="formUpdate" style="overflow-x:auto;"></div>
+	
+
+<div id="showAllLifeDiv"></div>
 <div>
-	<h3>Create  A Life Event</h3>
+	<h3>Want to Create Add a new Life Event? </h3>
 	<form name ="addLife">
 	<br><label for="title"> Name of Life Event</label><input type="text" name = "name"></input>
 	<br><label for="title"> Description</label><input type="text" name = "description"></input>
@@ -27,23 +48,13 @@
 	<br><label for="title"> Line Number</label><input type="text" name = "lineNumber"></input>
 	<br><label for="title"> Sub Menu</label><input type="text" name = "subMenu"></input>
 	<br><label for="title"> Time Created</label><input type="text" name = "timeCreated"></input>
-	<br><label for="submit"></label><input type="submit" name = "submit" value="submit"></input>
+	<hr><label for="submit"></label>Create Life Event => <input type="submit" name = "submit" value="submit"></input>
 	</form>
-<hr>
-	<div id="dataData"></div>
-	<div id="formUpdate"></div>
+
+
 <hr>
 
-<form name ="searchLife"> Search By Event
-		<input type="text" name = "findById"></input>
-		<input type="submit" value="submit" name="lookup"></input>
-		</form>
-	
-		<form name ="deleteLife"> Delete By Id
-		<input type="text" name = "deleteById"></input>
-		<input type="submit" value="submit" name="lookup"></input>
-		</form>
-	
+
 </div>
 <script src="js/script.js"></script>
 </body>

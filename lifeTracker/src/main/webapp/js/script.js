@@ -6,6 +6,9 @@ window.addEventListener('load', function(e) {
 	initShowAll();
 });
 
+var tableKeys = ['ID', 'NAME', 'USER STORY', 'DESCRIPTION', 'URL LIST', 'CATEGORY', 'PRIOITY', 'LINE NUMBER', 'SUB MENU', 'TIME CREATED' ];
+// var tester = null;
+// initUpdate(tester);
 
 function init() {
 	// document.newLife.lookup.ad('click', function(event) {
@@ -70,9 +73,7 @@ function initUpdate(data) {
 
 	uf.id = data.id;
 	uf.name = "updateLife";
-	console.log(uf);
-	console.log(div);
-	console.log(data.id);
+
 	uf.appendChild(document.createElement('br'));
 	for (key in data) {
 
@@ -140,24 +141,32 @@ function displayLifeEvent(data) {
 	var dataDiv = document.getElementById('dataData');
 	dataDiv.textContent = '';
 	// Table begins
-	header = document.createElement("hr");
+	header = document.createElement("hr"); //create spacer
 	dataDiv.appendChild(header);
 
 	let tb = document.createElement("table");
-	tb.textContent = "Tester Table";
+	tb.textContent = "Life Event " +data.id;
 	dataDiv.appendChild(tb);
 
 	let tr = document.createElement("tr");
 	dataDiv.appendChild(tr);
-
+	//tableKeys[] for table header names
+	for (let index = 0; index < tableKeys.length; index++) {
+		th = document.createElement("th");
+		th.textContent = tableKeys[index];
+		dataDiv.appendChild(th);
+		
+	}
+	dataDiv.appendChild(document.createElement("tr"));
 	for ( var key in data) {
 		if (data.hasOwnProperty(key)) {
 			// console.log(key + " -> " + p[key]);
-			td = document.createElement("td");
-			td.textContent = key + " " + data[key];
-			dataDiv.appendChild(td);
+
+			td2 = document.createElement("td");
+			td2.textContent = ""+data[key];
+
+			dataDiv.appendChild(td2);
 		}
-		dataDiv.appendChild(document.createElement("tr"));
 
 	}
 
@@ -288,22 +297,37 @@ function getAllLifeEvents() {
 
 }
 
+function displayAllLifeEvents2(dataArray) {
+	let dataDiv = document.getElementById('dataData');
+	//dataDiv.textContent = '';
+	// Table begins
+	for (var key in dataArray) {
+		console.log(dataArray[key]);
+		var dataSplit = dataArray[key];
+		console.log(dataSplit);
+		displayLifeEvent(dataSplit);
+
+	}
+	//creates row
+	let tr = document.createElement("tr");
+	dataDiv.appendChild(tr);
+}
+
 function displayAllLifeEvents(dataArray) {
 	var dataDiv = document.getElementById('showAllLifeDiv');
 	dataDiv.textContent = '';
+	//Creates table headers
+			for (let index = 0; index < tableKeys.length; index++) {
+				th = document.createElement("th");
+				th.textContent = tableKeys[index];
+				dataDiv.appendChild(th);
+				
+			}
 	// Table begins
-	header = document.createElement("hr");
-	dataDiv.appendChild(header);
-
-	let tb = document.createElement("table");
-	tb.textContent = "Tester Table";
-	dataDiv.appendChild(tb);
-
-	console.log(dataArray);
-
 	for (var key in dataArray) {
 		console.log("dataArray[key]")
 		var dataSplit = dataArray[key];
+		
 //creates row
 	let tr = document.createElement("tr");
 	dataDiv.appendChild(tr);
@@ -312,18 +336,39 @@ function displayAllLifeEvents(dataArray) {
 		if (dataSplit.hasOwnProperty(key)) {
 			// console.log(key + " -> " + p[key]);
 			td = document.createElement("td");
-			td.textContent = key + " " + dataSplit[key];
+			td.textContent = dataSplit[key];
 			dataDiv.appendChild(td);
+			//creates button
+			// let bt = document.createElement("button");
+			// bt.id = "buttonEdit" + dataSplit.id;
+			// bt.name="edit" +dataSplit[key];
+			// bt.textContent = "edit";
+			// console.log(bt);
+			// dataDiv.appendChild(bt);
+			//creates button end.
+
+			//initButtonEdit(dataSplit.id);
 		}
-		dataDiv.appendChild(document.createElement("tr"));
+		//dataDiv.appendChild(document.createElement("tr"));
 
 	}
 }
 
 }
 
+function initButtonEdit(id) {
+	document.getElementById("buttonEdit"+id).addEventListener('click', function() {
+	console.log("inside of Button Click Function");
+	//opens the update for that select id
+	
+	//getAllLifeEvents();
+
+});
+
+}
 // functions
-// displayLifeEvent(lifeEvent);
-// deleteLifeEvent(id);
+//sort functions  
+//clicking the th head will sort the files according to that category
+
 // createLifeEvent(lifeEvent);
 // displayAllLifeEvenets();
