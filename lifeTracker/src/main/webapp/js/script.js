@@ -5,11 +5,10 @@ window.addEventListener('load', function(e) {
 	initDelete();
 	initShowAll();
 	initMath();
+	initButtonEdit();
 });
 
 var tableKeys = ['ID', 'NAME', 'USER STORY', 'DESCRIPTION', 'URL LIST', 'CATEGORY', 'PRIOITY', 'LINE NUMBER', 'SUB MENU', 'TIME CREATED' ];
-// var tester = null;
-// initUpdate(tester);
 
 function init() {
 	// document.newLife.lookup.ad('click', function(event) {
@@ -57,6 +56,7 @@ function initDelete() {
 			}
 		}
 	});
+    document.getElementById("showAllLifeDiv").innerHTML = "";
 
 }
 
@@ -102,6 +102,7 @@ function initUpdate(data) {
 	submit.value = "submit";
 	submit.type = "submit";
 	submit.name = "submit";
+	submit.textContent = "Update ? ";
 	uf.appendChild(submit);
 
 	submit.addEventListener('click', function(e) {
@@ -147,28 +148,31 @@ function getLifeEvent(Id) {
 
 
 function displayLifeEvent(data) {
+	//assigns to Data DIV
 	var dataDiv = document.getElementById('dataData');
 	dataDiv.textContent = '';
-	// Table begins
-	header = document.createElement("hr"); //create spacer
-	dataDiv.appendChild(header);
+		// Table begins
+		header = document.createElement("hr"); //create spacer
+		dataDiv.appendChild(header);
 
-	let tb = document.createElement("table");
-	tb.textContent = "Life Event " +data.id;
-	dataDiv.appendChild(tb);
+		let tb = document.createElement("table");
+		tb.textContent = "Life Event " +data.id;
+		dataDiv.appendChild(tb);
 
-	let tr = document.createElement("tr");
-	dataDiv.appendChild(tr);
-	//tableKeys[] for table header names
-	for (let index = 0; index < tableKeys.length; index++) {
-		th = document.createElement("th");
-		th.textContent = tableKeys[index];
-		dataDiv.appendChild(th);
+		let tr = document.createElement("tr");
+		dataDiv.appendChild(tr);
+	
+		//tableKeys[] for table header names
+		for (let index = 0; index < tableKeys.length; index++) {
+			th = document.createElement("th");
+			th.textContent = tableKeys[index];
+			dataDiv.appendChild(th);
 		
-	}
-	dataDiv.appendChild(document.createElement("tr"));
-	for ( var key in data) {
-		if (data.hasOwnProperty(key)) {
+		}
+		//Table DATA Begins
+		dataDiv.appendChild(document.createElement("tr"));
+		for ( var key in data) {
+			if (data.hasOwnProperty(key)) {
 			// console.log(key + " -> " + p[key]);
 
 			td2 = document.createElement("td");
@@ -183,15 +187,21 @@ function displayLifeEvent(data) {
 	var delBut = document.createElement("button");
 	delBut.id = "delBut";
 	//delBut = "delBut";
-	console.log("delete button: id = " + delBut.id);
-	console.log("delete button: name = " + delBut.name);
-
+	console.log("Display 1:delete butt: id = " + delBut.id);
 	delBut.textContent = "Delete Life Event " +data.id;
 	dataDiv.appendChild(delBut);
 	dataDiv.appendChild(document.createElement("hr"));
 	initdelBut(data.id);
-}
+	var space = document.createElement("hr");
+	space.textContent = "update ID "+ data.id+ " Below.";
+	dataDiv.appendChild(space);
 
+
+}
+function clearBox(elementID)
+{
+    document.getElementById(elementID).innerHTML = "";
+}
 function deleteLifeEvent(id) {
 	console.log("Delete Func id = " +id);
 	url = "api/posts/" + id;
@@ -340,35 +350,34 @@ function displayAllLifeEvents(dataArray) {
 				dataDiv.appendChild(th);
 				
 			}
-	// Table begins
+	// Table begins  headers
 	for (var key in dataArray) {
 		console.log("dataArray[key]")
 		var dataSplit = dataArray[key];
 		
-//creates row
-	let tr = document.createElement("tr");
-	dataDiv.appendChild(tr);
+		//creates new row
+			let tr = document.createElement("tr");
+			dataDiv.appendChild(tr);
 
-	for ( var key in dataSplit) {
-		if (dataSplit.hasOwnProperty(key)) {
-			console.log("data Split =" +dataSplit.id);
-			td = document.createElement("td");
-			td.id = "td"+ dataSplit.id;
-			td.textContent = dataSplit[key];
-			console.log("*****"+td.id);
-			var x = "td" + dataSplit.id;
-			console.log("cclick TD = " + dataSplit.id);
-			console.log("x = " + x);
+		for ( var key in dataSplit) {
+			if (dataSplit.hasOwnProperty(key)) {
+				console.log("data Split =" +dataSplit.id);
+				td = document.createElement("td");
+				td.id = dataSplit.id;
+				td.textContent = dataSplit[key];
+				console.log("*****"+td.id);
+				var x = "td" + dataSplit.id;
+				console.log("cclick TD = " + dataSplit.id);
+				console.log("x = " + x);
 
 
 			//table id="my_table" onclick="console.log(this.id);
 
-			//  document.querySelectorAll('td')
-			//  .forEach(e => e.addEventListener("click", function() {
-			// console.log("cclick TD = " + dataSplit.id);
-			// getLifeEvent(dataSplit.id);
-			// 	e.target
-			// }));
+			  document.querySelectorAll('td')
+			  .forEach(e => e.addEventListener("click", function() {
+			 console.log("cclick TD = " + dataSplit.id);
+			 getLifeEvent(dataSplit.id);
+			 }));
 
 			// For having unique edit buttons, I think the easiest way is to have the button generated in 
 			// the same loop as your row.  You can give the button a property with the id of the object
@@ -485,11 +494,11 @@ function displayMath(dataArray) {
 }
 
 function initButtonEdit(id) {
-	document.getElementById("buttonEdit"+id).addEventListener('click', function() {
-	console.log("inside of Button Click Function");
+	document.getElementById("buttonRow").addEventListener('click', function() {
+	console.log("inside of Button Click Function ID=" +id);
 	//opens the update for that select id
-	
-	//getAllLifeEvents();
+	console.log(e.target.id);
+	getLifeEvens(id);
 
 });
 }
@@ -497,6 +506,7 @@ function initButtonEdit(id) {
 function initdelBut(idd) {
 	document.getElementById("delBut").addEventListener('click', function(e) {
 	console.log("inside of Button Click Function:" +e.target.id + idd);
+	confirm("Are You Sure?  Delete: " +idd);
 	deleteLifeEvent(idd);
 	//opens the update for that select id
 	
