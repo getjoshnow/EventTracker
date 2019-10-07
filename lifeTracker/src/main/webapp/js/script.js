@@ -178,11 +178,22 @@ function displayLifeEvent(data) {
 		}
 
 	}
+	//delete button
+	dataDiv.appendChild(document.createElement("hr"));
+	var delBut = document.createElement("button");
+	delBut.id = "delBut";
+	//delBut = "delBut";
+	console.log("delete button: id = " + delBut.id);
+	console.log("delete button: name = " + delBut.name);
 
+	delBut.textContent = "Delete Life Event " +data.id;
+	dataDiv.appendChild(delBut);
+	dataDiv.appendChild(document.createElement("hr"));
+	initdelBut(data.id);
 }
 
 function deleteLifeEvent(id) {
-
+	console.log("Delete Func id = " +id);
 	url = "api/posts/" + id;
 	var xhr = new XMLHttpRequest();
 	xhr.open('DELETE', url);
@@ -273,9 +284,6 @@ function updateLifeEvent() {
 	xhr.send(dataJson);
 }
 
-
-
-
 function getAllLifeEvents() {
 
 	url = "api/posts";
@@ -355,14 +363,17 @@ function displayAllLifeEvents(dataArray) {
 
 			//table id="my_table" onclick="console.log(this.id);
 
-			// document.querySelectorAll('td')
-			// .forEach(e => e.addEventListener("click", function() {
-  		 	//  // Here, `this` refers to the element the event was hooked on
-			// 	console.log("cclick TD = " + dataSplit.id);
-			// 	getLifeEvent(dataSplit.id);
-
+			//  document.querySelectorAll('td')
+			//  .forEach(e => e.addEventListener("click", function() {
+			// console.log("cclick TD = " + dataSplit.id);
+			// getLifeEvent(dataSplit.id);
+			// 	e.target
 			// }));
 
+			// For having unique edit buttons, I think the easiest way is to have the button generated in 
+			// the same loop as your row.  You can give the button a property with the id of the object
+			//  corresponding to that row.  Then in your event listener, you'll be able to access that id 
+			//  property through e.target.
 
 
 			// var ck = document.getElementsByName("cell"+dataSplit[key]);
@@ -425,8 +436,6 @@ function getMath() {
 	xhr.send(null);
 }
 
-
-
 function displayMath(dataArray) {
 	var dataDiv = document.getElementById('dataMath');
 	var runTotal = 0;
@@ -464,7 +473,7 @@ function displayMath(dataArray) {
 		dataDiv.appendChild(document.createElement("tr"));
 		//SHOW math totals
 		td = document.createElement("td");
-		td.textContent = "TOTAL:";
+		td.textContent = "TOTAL";
 		dataDiv.appendChild(td);
 		console.log(td);
 
@@ -483,5 +492,15 @@ function initButtonEdit(id) {
 	//getAllLifeEvents();
 
 });
+}
 
+function initdelBut(idd) {
+	document.getElementById("delBut").addEventListener('click', function(e) {
+	console.log("inside of Button Click Function:" +e.target.id + idd);
+	deleteLifeEvent(idd);
+	//opens the update for that select id
+	
+	//getAllLifeEvents();
+
+});
 }
