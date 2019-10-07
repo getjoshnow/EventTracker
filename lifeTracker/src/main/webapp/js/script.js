@@ -4,6 +4,7 @@ window.addEventListener('load', function(e) {
 	initAdd();
 	initDelete();
 	initShowAll();
+	initMath();
 });
 
 var tableKeys = ['ID', 'NAME', 'USER STORY', 'DESCRIPTION', 'URL LIST', 'CATEGORY', 'PRIOITY', 'LINE NUMBER', 'SUB MENU', 'TIME CREATED' ];
@@ -24,11 +25,18 @@ function init() {
 
 }
 
-function initShowAll() {
-		document.getElementById("showAllLife").addEventListener('click', function() {
-		console.log("in SHOW ALL Function");
-		getAllLifeEvents();
+function initMath() {
+		document.getElementById("showMath").addEventListener('click', function() {
+		console.log("in SHOW  Math Function");
+		getMath();
 	});
+
+}
+function initShowAll() {
+	document.getElementById("showAllLife").addEventListener('click', function() {
+	console.log("in SHOW ALL Function");
+	getAllLifeEvents();
+});
 
 }
 
@@ -136,6 +144,7 @@ function getLifeEvent(Id) {
 	xhr.send(null);
 
 }
+
 
 function displayLifeEvent(data) {
 	var dataDiv = document.getElementById('dataData');
@@ -334,9 +343,38 @@ function displayAllLifeEvents(dataArray) {
 
 	for ( var key in dataSplit) {
 		if (dataSplit.hasOwnProperty(key)) {
-			// console.log(key + " -> " + p[key]);
+			console.log("data Split =" +dataSplit.id);
 			td = document.createElement("td");
+			td.id = "td"+ dataSplit.id;
 			td.textContent = dataSplit[key];
+			console.log("*****"+td.id);
+			var x = "td" + dataSplit.id;
+			console.log("cclick TD = " + dataSplit.id);
+			console.log("x = " + x);
+
+
+			//table id="my_table" onclick="console.log(this.id);
+
+			// document.querySelectorAll('td')
+			// .forEach(e => e.addEventListener("click", function() {
+  		 	//  // Here, `this` refers to the element the event was hooked on
+			// 	console.log("cclick TD = " + dataSplit.id);
+			// 	getLifeEvent(dataSplit.id);
+
+			// }));
+
+
+
+			// var ck = document.getElementsByName("cell"+dataSplit[key]);
+			// console.log("ck =" +ck);
+			// ck.addEventListener('click', function() {
+			// 	console.log("inside of Button Click Function");
+			// 	//opens the update for that select id
+				
+			// 	//getAllLifeEvents();
+			
+			// });
+			//dataDiv.appendChild(ck);
 			dataDiv.appendChild(td);
 			//creates button
 			// let bt = document.createElement("button");
@@ -356,6 +394,87 @@ function displayAllLifeEvents(dataArray) {
 
 }
 
+
+
+function getMath() {
+
+	url = "api/posts";
+	var xhr = new XMLHttpRequest();
+	xhr.open('GET', url);
+
+	xhr.onreadystatechange = function() {
+		if (xhr.status < 400 && xhr.readyState === 4) {
+			// convert responseText to JSON
+			console.log(xhr.responseText);
+			if (xhr.responseText != "") {
+				//var data = xhr.responseText;
+				var data2 = JSON.parse(xhr.responseText);
+
+				// print out JSON data
+				console.log(data2);
+				displayMath(data2);
+			} else {
+				alert("error loading all Events");
+			}
+		} else if (xhr.readyState === 4 && xhr.status >= 400) {
+			console.error('ERROR!!!!');
+			data = null;
+		}
+	};
+
+	xhr.send(null);
+}
+
+
+
+function displayMath(dataArray) {
+	var dataDiv = document.getElementById('dataMath');
+	var runTotal = 0;
+	dataDiv.textContent = '';
+	//Creates table headers
+				th = document.createElement("th");
+				th.textContent = tableKeys[1];
+				dataDiv.appendChild(th);
+				th = document.createElement("th");
+				th.textContent = tableKeys[7];
+				dataDiv.appendChild(th);		
+	
+	// Table begins  this iterates over all JSONs
+	for (var key in dataArray) {
+		console.log("dataArray[key]")
+		var dataSplit = dataArray[key];
+		console.log(dataSplit)
+		
+//creates row
+		let tr = document.createElement("tr");
+		dataDiv.appendChild(tr);
+
+			td = document.createElement("td");
+			td.textContent = dataSplit.name;
+			dataDiv.appendChild(td);
+			console.log(dataSplit.name);
+
+
+			td = document.createElement("td");
+			td.textContent = dataSplit.lineNumber;
+			runTotal += dataSplit.lineNumber;
+			dataDiv.appendChild(td);
+			console.log(dataSplit.lineNumber);
+		}
+		dataDiv.appendChild(document.createElement("tr"));
+		//SHOW math totals
+		td = document.createElement("td");
+		td.textContent = "TOTAL:";
+		dataDiv.appendChild(td);
+		console.log(td);
+
+
+		td = document.createElement("td");
+		td.textContent = runTotal;
+		dataDiv.appendChild(td);
+		console.log(dataSplit.lineNumber);
+}
+
 function initButtonEdit(id) {
 	document.getElementById("buttonEdit"+id).addEventListener('click', function() {
 	console.log("inside of Button Click Function");
@@ -366,9 +485,3 @@ function initButtonEdit(id) {
 });
 
 }
-// functions
-//sort functions  
-//clicking the th head will sort the files according to that category
-
-// createLifeEvent(lifeEvent);
-// displayAllLifeEvenets();
