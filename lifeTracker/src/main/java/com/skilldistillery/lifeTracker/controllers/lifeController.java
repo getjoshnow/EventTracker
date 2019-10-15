@@ -1,6 +1,8 @@
 package com.skilldistillery.lifeTracker.controllers;
 
+import java.security.Principal;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.lifeTracker.Services.LifeService;
@@ -21,6 +24,15 @@ import com.skilldistillery.lifeTracker.entities.Life;
 @RequestMapping("api")
 @RestController
 public class lifeController {
+	
+//private String username = shaun;
+// 	security building into app.
+//	@GetMapping(path ="posts")
+//	public Set<Life> listUserTodos(Principal principal) {
+//		//return svr.index();
+//		return svr.index(principal.getName());
+//	}
+
 
 	@Autowired
 	private LifeService svr;
@@ -34,6 +46,11 @@ public class lifeController {
 		return svr.index();
 	}
 
+	@RequestMapping(path = "/authenticate", method = RequestMethod.GET)
+	public Principal authenticate(Principal principal) {
+	    return principal;
+	}
+	
 	@GetMapping(path ="post/{trackerId}")
 	public Life show(@PathVariable Integer trackerId, HttpServletResponse resp) {
 		return svr.show(trackerId);

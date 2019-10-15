@@ -365,24 +365,16 @@ function displayAllLifeEvents(dataArray) {
 				td = document.createElement("td");
 				td.id = dataSplit.id;
 				td.textContent = dataSplit[key];
-				console.log("*****"+td.id);
 				var x = "td" + dataSplit.id;
 				console.log("cclick TD = " + dataSplit.id);
 				console.log("x = " + x);
-
-
-			//table id="my_table" onclick="console.log(this.id);
-
-			  document.querySelectorAll('td')
-			  .forEach(e => e.addEventListener("click", function() {
-			 console.log("cclick TD = " + dataSplit.id);
-			 getLifeEvent(dataSplit.id);
-			 }));
-
-			// For having unique edit buttons, I think the easiest way is to have the button generated in 
-			// the same loop as your row.  You can give the button a property with the id of the object
-			//  corresponding to that row.  Then in your event listener, you'll be able to access that id 
-			//  property through e.target.
+			}
+		}
+			//   document.querySelectorAll('td')
+			//   .forEach(e => e.addEventListener("click", function() {
+			//  console.log("cclick TD = " + dataSplit.id);
+			//  getLifeEvent(dataSplit.id);
+			//  }));
 
 
 			// var ck = document.getElementsByName("cell"+dataSplit[key]);
@@ -404,12 +396,28 @@ function displayAllLifeEvents(dataArray) {
 			// console.log(bt);
 			// dataDiv.appendChild(bt);
 			//creates button end.
+			
+			//*************************************************************************************** */
+
+
+			//edit button
+			dataDiv.appendChild(document.createElement("hr"));
+			var editBut = document.createElement("button");
+			editBut.id = "editBut";
+			//delBut = "delBut";
+			console.log("Display 1:EDIT butt: id = " + editBut.id);
+			editBut.textContent = "Delete Life Event " +data.id;
+			dataDiv.appendChild(editBut);
+			dataDiv.appendChild(document.createElement("hr"));
+			initdelBut(data.id);
+			var space = document.createElement("hr");
+			space.textContent = "update ID "+ data.id+ " Below.";
+			dataDiv.appendChild(space);
+			//*************************************************************************************** */
 
 			//initButtonEdit(dataSplit.id);
-		}
 		//dataDiv.appendChild(document.createElement("tr"));
 
-	}
 }
 
 }
@@ -492,12 +500,34 @@ function displayMath(dataArray) {
 		dataDiv.appendChild(td);
 		console.log(dataSplit.lineNumber);
 }
+function handler( event ) {
+	var target = $( event.target );
+	if ( target.is( "td" ) ) {
+	  target.children().toggle();
+	}
+  }
+
+ // $( "ul" ).click( handler ).find( "ul" ).hide();
+
+function handler( event ) {
+	var target = $( event.target );
+	getLifeEvens(id);
+
+	}
+
 
 function initButtonEdit(id) {
+				// For having unique edit buttons, I think the easiest way is to have the button generated in 
+			// the same loop as your row.  You can give the button a property with the id of the object
+			//  corresponding to that row.  Then in your event listener, you'll be able to access that id 
+			//  property through e.target.
+
 	document.getElementById("buttonRow").addEventListener('click', function() {
+	e.target	
 	console.log("inside of Button Click Function ID=" +id);
 	//opens the update for that select id
 	console.log(e.target.id);
+
 	getLifeEvens(id);
 
 });

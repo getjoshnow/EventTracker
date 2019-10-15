@@ -17,7 +17,7 @@ class LifeTest {
 
 	private static EntityManager em;;
 	private static EntityManagerFactory emf;
-	 private static Life life = new Life();	
+	private static Life life = new Life();	
 
 	 @BeforeAll
 	 public static void setUp1() throws Exception {

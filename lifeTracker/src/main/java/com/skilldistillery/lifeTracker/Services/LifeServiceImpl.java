@@ -18,7 +18,6 @@ public class LifeServiceImpl implements LifeService {
 	@Override
 	public List<Life> index() {
 		List<Life> debugging = repo.findAll();
-		
 		return debugging;
 	}
 

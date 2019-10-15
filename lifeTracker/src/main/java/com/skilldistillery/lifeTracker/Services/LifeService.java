@@ -11,4 +11,5 @@ public interface LifeService {
 	Life create (Life life);
 	Life update(Integer LifeId, Life life);
 	Boolean delete(Integer LifeId);
+	
 }
