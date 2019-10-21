@@ -1,20 +1,16 @@
-import { EtService } from './service/et.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { NavBarComponent } from './components/nav-bar/nav-bar.component';
-import { SiteComponent } from './component/site/site.component';
-import { RESTComponent } from './service/rest/rest.component';
+import { SiteComponent } from './site/site.component';
 import { FormsModule } from '@angular/forms';
+import { TestService } from './service/et.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavBarComponent,
     SiteComponent,
-    RESTComponent
   ],
   imports: [
     BrowserModule,
@@ -22,7 +18,7 @@ import { FormsModule } from '@angular/forms';
     FormsModule
   ],
   providers: [
-    EtService
+    TestService
   ],
   bootstrap: [AppComponent]
 })

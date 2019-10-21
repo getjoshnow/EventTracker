@@ -167,8 +167,8 @@ function displayLifeEvent(data) {
 			th = document.createElement("th");
 			th.textContent = tableKeys[index];
 			dataDiv.appendChild(th);
-		
 		}
+		
 		//Table DATA Begins
 		dataDiv.appendChild(document.createElement("tr"));
 		for ( var key in data) {
@@ -451,6 +451,7 @@ function displayMath(dataArray) {
 		dataDiv.appendChild(td);
 		console.log(dataSplit.lineNumber);
 }
+
 function handler( event ) {
 	var target = $( event.target );
 	if ( target.is( "td" ) ) {

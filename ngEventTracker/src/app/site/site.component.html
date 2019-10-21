@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
   <meta charset="UTF-8">
   <title>Life Tracker</title>
@@ -57,7 +56,7 @@
         <th>subMenu</th>
         <th>timeCreated</th>
     </tr>
-    <tr *ngFor="let t of todos" >
+    <tr *ngFor="let t of todos" (click)="showById(t.id)" >
       <td>{{t.id}}</td>
       <td>{{t.name}}</td>
       <td>{{t.description}}</td>
