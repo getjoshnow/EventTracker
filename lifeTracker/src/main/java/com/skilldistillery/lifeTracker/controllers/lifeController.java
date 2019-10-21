@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,10 +24,13 @@ import com.skilldistillery.lifeTracker.entities.Life;
 
 @RequestMapping("api")
 @RestController
+@CrossOrigin({"*", "http://localhost:4201"})
 public class lifeController {
-	
+
+	private String username = "shaun";
+
+// security  Requirement building into app.	
 //private String username = shaun;
-// 	security building into app.
 //	@GetMapping(path ="posts")
 //	public Set<Life> listUserTodos(Principal principal) {
 //		//return svr.index();
@@ -51,7 +55,7 @@ public class lifeController {
 	    return principal;
 	}
 	
-	@GetMapping(path ="post/{trackerId}")
+	@GetMapping(path ="posts/{trackerId}")
 	public Life show(@PathVariable Integer trackerId, HttpServletResponse resp) {
 		return svr.show(trackerId);
 	}

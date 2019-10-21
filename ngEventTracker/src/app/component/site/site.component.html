@@ -1,64 +1,142 @@
-<p>site works!</p>
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<title>Life Tracker</title>
-
+  <meta charset="UTF-8">
+  <title>Life Tracker</title>
 </head>
+
 <body>
-<link rel="stylesheet" type="text/css" href="js/index.css">
 
+  <h1>Life Event Loading Page Tracker</h1>
 
+  <hr>
+  <!-- Buttons functionality (Show ALL, Show Math, Ping Test) -->
+  <table>
+    <tr>
+      <button id="showAllLife" (click)=showAll()>Show All Life Events</button>
+      <button id="showMath" (click)=showMath()>Show Math about Life Events Line numbers</button>
+      <button id="ping" (click)=ping()>Ping Test</button>
+    </tr>
 
-<h1>Life Event Loading Page Tracker</h1>
+    <!-- Search By Id  -->
+    <tr>
+      <td>
+        <form #searchForm="ngForm"> Search By Id
+          <input type="text" name="findById" ngModel>
+          <input type="submit" value="submit" name="search" (click)="showById(searchForm)">
+        </form>
+      </td>
 
+      <!-- Delete By Id  -->
+      <td>
+        <form #deleteForm="ngForm" name="deleteLife"> Delete By Id
+          <input type="text" name="deleteById" ngModel>
+          <input type="submit" value="submit" name="submit" (click)="delete(deleteForm)">
+        </form>
+      </td>
+    </tr>
+  </table>
 
-<hr>
+  <hr>
 
-<table><tr>
-		<button id="showAllLife" >Show All Life Events</button>
-		<button id="showMath" >Show Math about Life Events Line numbers</button>
+  <div>
 
-		</tr><tr>
-<td>
-<form name ="searchLife"> Search By Event
-		<input type="text" name = "findById">
-		<input type="submit" value="submit" name="lookup">
-		</form>
-	</td><td>
-		<form name ="deleteLife"> Delete By Id
-		<input type="text" name = "deleteById">
-		<input type="submit" value="submit" name="
-		</form>
-	</td></tr></table>
-
-		<hr>
-		<div id="dataMath" style="overflow-x:auto;"></div>
-		<div id="dataData" style="overflow-x:auto;"></div>
-		<div id="formUpdate" style="overflow-x:auto;"></div>
-		<div id="showAllLifeDiv" style="overflow-x:auto;"></div>
-
-<div>
-	<h3>Want to Create Add a new Life Event? </h3>
-	<form name ="addLife">
-	<br><label for="title"> Name of Life Event</label><input type="text" name = "name">
-	<br><label for="title"> Description</label><input type="text" name = "description">
-	<br><label for="title"> User Story</label><input type="text" name = "userStory">
-	<br><label for="title"> Category </label><input type="text" name = "category">
-	<br><label for="title"> Priority</label><input type="text" name = "priority">
-	<br><label for="title"> URL Links</label><input type="text" name = "urlList">
-	<br><label for="title"> Line Number</label><input type="text" name = "lineNumber">
-	<br><label for="title"> Sub Menu</label><input type="text" name = "subMenu">
-	<br><label for="title"> Time Created</label><input type="text" name = "timeCreated">
-	<hr><label for="submit"></label>Create Life Event => <input type="submit" name = "submit" value="submit">
-	</form>
-
-
-<hr>
-
-
+<!-- Show ALL event -->
+<div *ngIf="selectedShowAll">
+    <table> Show all Life Events
+    <tr>
+        <th>id</th>
+        <th>name</th>
+        <th>description</th>
+        <th>userStory</th>
+        <th>category</th>
+        <th>priorit</th>
+        <th>urlList</th>
+        <th>lineNumber</th>
+        <th>subMenu</th>
+        <th>timeCreated</th>
+    </tr>
+    <tr *ngFor="let t of todos" >
+      <td>{{t.id}}</td>
+      <td>{{t.name}}</td>
+      <td>{{t.description}}</td>
+      <td>{{t.userStory}}</td>
+      <td>{{t.category}}</td>
+      <td>{{t.priority}}</td>
+      <td>{{t.urlList}}</td>
+      <td>{{t.lineNumber}}</td>
+      <td>{{t.subMenu}}</td>
+      <td>{{t.timeCreated}}</td>
+    </tr>
+  </table>
 </div>
-<script src="js/script.js"></script>
+
+<!-- Show BY ID event -->
+<div *ngIf="!selectedShowAll && selectedShowById" >
+    <table> Show ONE Life Event
+    <tr>
+        <th>id</th>
+        <th>name</th>
+        <th>description</th>
+        <th>userStory</th>
+        <th>category</th>
+        <th>priorit</th>
+        <th>urlList</th>
+        <th>lineNumber</th>
+        <th>subMenu</th>
+        <th>timeCreated</th>
+    </tr>
+    <tr>
+      <td>{{t1.id}}</td>
+      <td>{{t1.name}}</td>
+      <td>{{t1.description}}</td>
+      <td>{{t1.userStory}}</td>
+      <td>{{t1.category}}</td>
+      <td>{{t1.priority}}</td>
+      <td>{{t1.urlList}}</td>
+      <td>{{t1.lineNumber}}</td>
+      <td>{{t1.subMenu}}</td>
+      <td>{{t1.timeCreated}}</td>
+    </tr>
+  </table>
+</div>
+
+<div *ngIf="!selectedShowAll && !selectedShowById && selectedMath" >
+    <table> Show All Math
+    <tr>
+        <th>id</th>
+        <th>lineNumber</th>
+      </tr>
+      <tr *ngFor="let t1 of todos" >
+        <td>{{t1.id}}</td>
+        <td>{{t1.lineNumber}}</td>
+      </tr>
+      <tr>
+      <td>Total</td>
+      <td>{{totalNumber}}</td>
+    </tr>
+    </table>
+  </div>
+
+
+    <!-- Create Another Life Event  -->
+    <h3> Add a new Event? </h3>
+    <form #addForm="ngForm" name="addLife">
+      <br><label for="title"> Name of Life Event</label><input type="text" name="name" ngModel>
+      <br><label for="title"> Description</label><input type="text" name="description" ngModel>
+      <br><label for="title"> User Story</label><input type="text" name="userStory" ngModel>
+      <br><label for="title"> Category </label><input type="text" name="category" ngModel>
+      <br><label for="title"> Priority</label><input type="text" name="priority" ngModel>
+      <br><label for="title"> URL Links</label><input type="text" name="urlList" ngModel>
+      <br><label for="title"> Line Number</label><input type="text" name="lineNumber" ngModel>
+      <br><label for="title"> Sub Menu</label><input type="text" name="subMenu" ngModel>
+      <br><label for="title"> Time Created</label><input type="text" name="timeCreated" ngModel>
+      <hr><label for="submit">Create Life Event</label>
+      <input type="submit" name="submit" value="submit" (click)="create(addForm)">
+    </form>
+    <hr>
+
+  </div>
 </body>
 </html>

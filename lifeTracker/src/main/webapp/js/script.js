@@ -182,7 +182,6 @@ function displayLifeEvent(data) {
 		}
 
 	}
-	//delete button
 	dataDiv.appendChild(document.createElement("hr"));
 	var delBut = document.createElement("button");
 	delBut.id = "delBut";
@@ -195,7 +194,6 @@ function displayLifeEvent(data) {
 	var space = document.createElement("hr");
 	space.textContent = "update ID "+ data.id+ " Below.";
 	dataDiv.appendChild(space);
-
 
 }
 function clearBox(elementID)
@@ -210,13 +208,7 @@ function deleteLifeEvent(id) {
 
 	xhr.onreadystatechange = function() {
 		if (xhr.status < 400 && xhr.readyState === 4) {
-			// convert responseText to JSON
-			// print out JSON data
-			// console.log(data);
 			alert("deleted:" + id);
-			// displayLifeEvent(data);
-			// console.log(data[0].id); // 1
-
 		} else if (xhr.readyState === 4 && xhr.status >= 400) {
 			console.error('ERROR!!!!');
 			data = null;
@@ -295,21 +287,15 @@ function updateLifeEvent() {
 }
 
 function getAllLifeEvents() {
-
 	url = "api/posts";
 	var xhr = new XMLHttpRequest();
 	xhr.open('GET', url);
 
 	xhr.onreadystatechange = function() {
 		if (xhr.status < 400 && xhr.readyState === 4) {
-			// convert responseText to JSON
 			console.log(xhr.responseText);
 			if (xhr.responseText != "") {
-				//var data = xhr.responseText;
 				var data2 = JSON.parse(xhr.responseText);
-
-				// print out JSON data
-				console.log(data2);
 				displayAllLifeEvents(data2);
 			} else {
 				alert("error loading all Events");
@@ -319,21 +305,18 @@ function getAllLifeEvents() {
 			data = null;
 		}
 	};
-
 	xhr.send(null);
 
 }
 
 function displayAllLifeEvents2(dataArray) {
 	let dataDiv = document.getElementById('dataData');
-	//dataDiv.textContent = '';
 	// Table begins
 	for (var key in dataArray) {
 		console.log(dataArray[key]);
 		var dataSplit = dataArray[key];
 		console.log(dataSplit);
 		displayLifeEvent(dataSplit);
-
 	}
 	//creates row
 	let tr = document.createElement("tr");
@@ -370,35 +353,8 @@ function displayAllLifeEvents(dataArray) {
 				console.log("x = " + x);
 			}
 		}
-			//   document.querySelectorAll('td')
-			//   .forEach(e => e.addEventListener("click", function() {
-			//  console.log("cclick TD = " + dataSplit.id);
-			//  getLifeEvent(dataSplit.id);
-			//  }));
-
-
-			// var ck = document.getElementsByName("cell"+dataSplit[key]);
-			// console.log("ck =" +ck);
-			// ck.addEventListener('click', function() {
-			// 	console.log("inside of Button Click Function");
-			// 	//opens the update for that select id
-				
-			// 	//getAllLifeEvents();
-			
-			// });
-			//dataDiv.appendChild(ck);
+		
 			dataDiv.appendChild(td);
-			//creates button
-			// let bt = document.createElement("button");
-			// bt.id = "buttonEdit" + dataSplit.id;
-			// bt.name="edit" +dataSplit[key];
-			// bt.textContent = "edit";
-			// console.log(bt);
-			// dataDiv.appendChild(bt);
-			//creates button end.
-			
-			//*************************************************************************************** */
-
 
 			//edit button
 			dataDiv.appendChild(document.createElement("hr"));
@@ -413,12 +369,7 @@ function displayAllLifeEvents(dataArray) {
 			var space = document.createElement("hr");
 			space.textContent = "update ID "+ data.id+ " Below.";
 			dataDiv.appendChild(space);
-			//*************************************************************************************** */
-
-			//initButtonEdit(dataSplit.id);
-		//dataDiv.appendChild(document.createElement("tr"));
-
-}
+	}
 
 }
 
@@ -507,27 +458,23 @@ function handler( event ) {
 	}
   }
 
- // $( "ul" ).click( handler ).find( "ul" ).hide();
-
 function handler( event ) {
 	var target = $( event.target );
 	getLifeEvens(id);
-
 	}
 
 
 function initButtonEdit(id) {
-				// For having unique edit buttons, I think the easiest way is to have the button generated in 
-			// the same loop as your row.  You can give the button a property with the id of the object
-			//  corresponding to that row.  Then in your event listener, you'll be able to access that id 
-			//  property through e.target.
+// For having unique edit buttons, I think the easiest way is to have the button generated in 
+// the same loop as your row.  You can give the button a property with the id of the object
+//  corresponding to that row.  Then in your event listener, you'll be able to access that id 
+//  property through e.target.
 
 	document.getElementById("buttonRow").addEventListener('click', function() {
 	e.target	
 	console.log("inside of Button Click Function ID=" +id);
 	//opens the update for that select id
 	console.log(e.target.id);
-
 	getLifeEvens(id);
 
 });
@@ -538,9 +485,5 @@ function initdelBut(idd) {
 	console.log("inside of Button Click Function:" +e.target.id + idd);
 	confirm("Are You Sure?  Delete: " +idd);
 	deleteLifeEvent(idd);
-	//opens the update for that select id
-	
-	//getAllLifeEvents();
-
-});
+	});
 }

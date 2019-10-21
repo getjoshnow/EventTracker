@@ -1,5 +1,5 @@
+import { EtService } from './../../service/et.service';
 import { HttpClientModule } from '@angular/common/http';
-import { TestService } from './../../service/service.component';
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from 'selenium-webdriver/http';
 
@@ -10,13 +10,17 @@ import { HttpClient } from 'selenium-webdriver/http';
 })
 export class NavBarComponent implements OnInit {
 
-  constructor(s: TestService, http: HttpClientModule) { }
+  constructor(etservice: EtService, http: HttpClientModule) {
 
-  ngOnInit() {
+
   }
 
   // ping() {
   //   return this.http.get<any[]>('http://localhost:8090/api/ping');
 
   // }
+  ngOnInit() {
+  }
+
+
 }
