@@ -15,6 +15,7 @@ import { TestService } from './service/et.service';
   imports: [
     BrowserModule,
     HttpClientModule,
+    HttpClient,
     FormsModule
   ],
   providers: [

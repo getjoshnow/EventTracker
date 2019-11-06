@@ -40,7 +40,7 @@ export class SiteComponent {
   }
 
   ngOnInit() {
-    this.todos = this.etService.index();
+    this.todos = this.testService.index();
   }
 
 
